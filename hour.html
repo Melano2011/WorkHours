@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hours</title>
+    <style>
+        body{
+            background: linear-gradient(150deg,#09f,#7400a5);
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: white;
+
+        }
+        input {
+            border: none;
+            outline: none;
+            height: 30px; 
+            width: 80px;       
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60vw;
+            padding: 50px;
+            border-radius: 20px;
+            background: hsla(0,0%,100%,.1);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+        }
+        .from,.to {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+        .button {          
+        background-color: #09f;
+        color: #fff;
+        top: 70%;
+        border: none;
+        width: 50%;
+        padding: 10px 0;
+        }
+        .c {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        #result {
+            font-size: 1.5rem;
+        }
+        img {
+            width: 20vw;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%,-10%);
+        }
+    </style>
+</head>
+<body>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/800px-KFC_logo.svg.png" alt="">
+    <div class="container">
+        <div class="c">
+        <p>Hours</p>
+        <p>Minues</p>
+         </div>
+        <div class="from">
+            <p>From</p>
+            <div class="frominput">
+            <input type="text" name="" id="hour1" value="12">
+            <input type="text" name="" id="minute1" value="30">
+        </div>
+        </div>
+        <div class="to">
+            <p>To</p>
+            <div class="toinput">
+            <input type="text" name="" id="hour2" value="18">
+            <input type="text" name="" id="minute2" value="40">
+        </div>
+          </div>
+        <button type="submit" onclick="Calculate()" class="button">Calculate</button>
+        <p id="result">6 hours 10 minutes</p>
+    </div>
+    <script>
+        function Calculate(){
+            h1 = document.getElementById("hour1").value;
+            h2 = document.getElementById("hour2").value;
+            m1 = document.getElementById("minute1").value;
+            m2 = document.getElementById("minute2").value;
+            r =  document.getElementById("result");
+            if(isNaN(h1)||isNaN(h2)||isNaN(m1)||isNaN(m2)){
+                alert("enter numbers yala");
+            }
+            else if(h1>24||h1<0||h2>24||h2<0||m1>60||m1<0||m2>60||m2<0){
+                alert("بتنيل ايه انت؟ اكتب الرقم عدل");
+            }
+            else{
+                hours = h2 - h1;
+
+                minutes=0;
+                if(m2>m1){
+                    minutes = m2 -m1;
+                }
+                else {
+                    minutes = 60 - (m1 -m2);
+                    hours--;
+                }
+                if(minutes==60){
+                    minutes=0;
+                    hours++;
+                }
+                if(hours<0){
+                    hours=24+hours;
+                }
+                r.innerHTML = hours + " hours " + minutes +" minutes";
+
+            }
+        }
+    </script>
+</body>
+</html>
